@@ -42,7 +42,7 @@ public class OpenhabClient {
 							.setEntity(stringEntity)
 							.build();
 		HttpResponse response = client.execute(post);
-		System.out.println("OpenHAB response code is "+response.getStatusLine().getStatusCode());
+		System.out.println("OpenHAB push "+response.getStatusLine().getStatusCode());
 		return response.getStatusLine().getStatusCode();
 	}
 	//takes item name and print its value

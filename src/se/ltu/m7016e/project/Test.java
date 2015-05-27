@@ -17,23 +17,24 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Calendar startTime = new GregorianCalendar(2014, 04, 26, 5, 00, 00);
+		Calendar startTime = new GregorianCalendar(2015, 04, 26, 5, 00, 00);
 		Calendar endTime= new GregorianCalendar(2015, 04, 30, 7, 30, 00);
-		
 		MongoDB database = new MongoDB("openhab", "test1");
 		database.connect();
 		LogActivity log = new LogActivity(database ,startTime , endTime);
 		log.getLog();
-		/*
+		
+		
+		
 		try {
 			log.sendLog();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 		
 		 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {
-				openHab.pushItemValue(METER_SWITCH , ON);
+				openHab.pushItemValue(METER_SWITCH , OFF);
 				openHab.pullItemValue(METER_SWITCH);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -52,5 +53,3 @@ public class Test {
 		database.disconnect();
 	}
 }
-
-

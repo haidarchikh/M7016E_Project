@@ -7,10 +7,7 @@ import org.apache.http.client.ClientProtocolException;
 	
 public class LogActivity {
 	 
-	public final static  String MATTRESS_SENSOR = "mattress_Sensor";
-	public final static  String MOTION_SENSOR = "motion_Sensor";
-	public final static  String RFID = "RFID";
-	private MongoDB database;
+
 	private ActivitiesTime getTime;
 	private long sleep	;
 	private long atHome	;
@@ -19,17 +16,15 @@ public class LogActivity {
 	private Calendar endTime;
 	
 	public LogActivity(MongoDB database ,Calendar startTime , Calendar endTime){
-				this.startTime 	= startTime;
-				this.endTime	= endTime;
-				this.database 	= database;
+		getTime = new ActivitiesTime(database);
+		this.startTime 	= startTime;
+		this.endTime	= endTime;		
 	}
 	
 	public void getLog(){
-		getTime = new ActivitiesTime(database);
-		
-		sleep  = getTime.findActivityTime(startTime, endTime, MATTRESS_SENSOR);
-		atHome = getTime.findActivityTime(startTime, endTime, RFID);
-		moving = getTime.findActivityTime(startTime, endTime, MOTION_SENSOR);
+		sleep  = getTime.findActivityTime(startTime, endTime, ActivitiesTime.MATTRESS_SENSOR);
+		atHome = getTime.findActivityTime(startTime, endTime, ActivitiesTime.RFID);
+		moving = getTime.findActivityTime(startTime, endTime, ActivitiesTime.MOTION_SENSOR);
 	}
 	
 	public void sendLog() throws ClientProtocolException, IOException{

@@ -33,6 +33,9 @@ public class MongoDB {
 	public MongoCollection<Document> getColl() {
 		return coll;
 	}
+	public MongoDatabase getdb() {
+		return db;
+	}
 		
 	//connect to the database
 	public void connect(){

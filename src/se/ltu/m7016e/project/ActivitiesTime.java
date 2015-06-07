@@ -21,8 +21,9 @@ public class ActivitiesTime {
 	public final static String TIMESTAMP 		= "timestamp";
 	public final static String VALUE 			= "value";
 	public final static String ITEM 			= "item";
-	public ActivitiesTime(MongoDB database){
-	coll = database.getColl();	
+	public ActivitiesTime(){
+	//coll = database.getColl();
+		coll = MongoDB.coll;
 	}
 	
 public long findActivityTime(Calendar startDate, Calendar endDate, String itemName){

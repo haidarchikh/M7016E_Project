@@ -15,7 +15,7 @@ public class MongoDB {
 	private String collection = null; 
 	private MongoClient mongoClient = null;
 	private MongoDatabase db = null;
-	private MongoCollection<Document> coll= null;
+	public static MongoCollection<Document> coll= null;
 	
 	public MongoDB(String database , String collection) {
 		hostAddress = "localhost";

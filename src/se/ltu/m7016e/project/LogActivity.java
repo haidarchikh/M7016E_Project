@@ -15,8 +15,8 @@ public class LogActivity {
 	private Calendar startTime;
 	private Calendar endTime;
 	
-	public LogActivity(MongoDB database ,Calendar startTime , Calendar endTime){
-		getTime = new ActivitiesTime(database);
+	public LogActivity(Calendar startTime , Calendar endTime){
+		getTime = new ActivitiesTime();
 		this.startTime 	= startTime;
 		this.endTime	= endTime;		
 	}

@@ -24,9 +24,18 @@ public class Test {
 		
 		MongoDB database = new MongoDB("openhab", "test1");
 		database.connect();
-		LogActivity log = new LogActivity(database ,startTime , endTime);
+		LogActivity log = new LogActivity(startTime , endTime);
 		log.getLog();
 		System.out.println("Over all time difference is "+timeDeference/1000);
+		
+		SuggestActivity activity = new SuggestActivity();
+		try {
+			activity.suggestWeather();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		OpenWeatherMap weather = new OpenWeatherMap();
 		try {

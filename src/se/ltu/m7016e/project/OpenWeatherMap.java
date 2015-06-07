@@ -23,7 +23,9 @@ public class OpenWeatherMap {
 	private HttpClient client;
 	private JSONObject mainObjext;
 	private JSONObject weatherObject;
-	private final static String API_KEY = "3dd0e5bb8aee599c66a6d054f958a967";
+	private String weather;
+	private double temperature ; 
+	private final static String OPEN_WEATHER_API_KEY = "3dd0e5bb8aee599c66a6d054f958a967";
 	
 	
 	public OpenWeatherMap(){
@@ -34,17 +36,17 @@ public class OpenWeatherMap {
 		this.country = country;	
 		url = new StringBuilder();
 		// Build the Url
+		// http://api.openweathermap.org/data/2.5/find?q=Lulea,se&units=metric,APPID=3dd0e5bb8aee599c66a6d054f958a967
 		url.append("http://api.openweathermap.org/data/2.5/find?q=")
 					 .append(this.city)
 					 .append(",")
 					 .append(this.country)
 					 .append("&")
 					 .append("units=metric")
-					 .append(",")
-					 .append("APPID="+API_KEY);
-		System.out.println(url.toString());
+					 .append("&")
+					 .append("APPID="+OPEN_WEATHER_API_KEY);
 	}
-	public void getWeather() throws ClientProtocolException, IOException{
+	public String getWeather() throws ClientProtocolException, IOException{
 		client = HttpClients.custom().build();
 		// Get the weather
 		HttpUriRequest get = RequestBuilder
@@ -58,25 +60,28 @@ public class OpenWeatherMap {
 		 
 		StringBuilder result = new StringBuilder();
 		String line = "";
-			while ((line = rd.readLine()) != null) {
-				result.append(line);
+		while ((line = rd.readLine()) != null) {
+			result.append(line);
 		}
-			try {
-				JSONObject JSONresponse  = new JSONObject(result.toString());
-				JSONArray  listArray     = JSONresponse.getJSONArray("list");
-				JSONObject listObject 	 = listArray.getJSONObject(0);
-				JSONArray  weatherArray  = listObject.getJSONArray("weather");
-				
-				mainObjext    = listObject.getJSONObject("main");
-				weatherObject = weatherArray.getJSONObject(0);
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			System.out.println(weatherObject);
-			System.out.println(mainObjext);
+		rd.close();
+		try {
+			JSONObject JSONresponse  = new JSONObject(result.toString());
+			JSONArray  listArray     = JSONresponse.getJSONArray("list");
+			JSONObject listObject 	 = listArray.getJSONObject(0);
+			JSONArray  weatherArray  = listObject.getJSONArray("weather");
 			
-			rd.close();
-		System.out.println("OpenWratherMap response : "+response.getStatusLine().getStatusCode());
+			mainObjext    = listObject.getJSONObject("main");
+			weatherObject = weatherArray.getJSONObject(0);
+			weather       = (String) weatherObject.get("main");
+			temperature   = (double) mainObjext.get("temp");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		//System.out.println(weatherObject);
+		//System.out.println(mainObjext);
+		System.out.println("OpenWeatherMap response : "+response.getStatusLine().getStatusCode());
+		System.out.println("The weather status is : "+weather);
+		System.out.println("The temperature is    : "+temperature);
+		return weather;
 	}
 }

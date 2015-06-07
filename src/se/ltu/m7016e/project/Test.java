@@ -18,8 +18,8 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Calendar startTime = new GregorianCalendar(2015, 04, 29, 21, 00, 00);
-		Calendar endTime= new GregorianCalendar(2015, 04, 30, 7, 30, 00);
+		Calendar startTime = new GregorianCalendar(2015, 04, 29, 6, 45, 00);
+		Calendar endTime= new GregorianCalendar(2015, 04, 29, 7, 30, 00);
 		long timeDeference = endTime.getTimeInMillis() - startTime.getTimeInMillis();
 		
 		MongoDB database = new MongoDB("openhab", "test1");

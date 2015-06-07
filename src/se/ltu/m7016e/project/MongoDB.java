@@ -49,7 +49,7 @@ public class MongoDB {
 		mongoClient.close();
 	}
 		
-	//find all the item matches a given key,value pair and print them
+	//find all the item that matches a given key,value pair and print them
 	public void findItem(String key, String value){
 		
 		FindIterable<Document> iterable = coll.find(new Document(key, value));

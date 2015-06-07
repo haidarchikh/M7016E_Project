@@ -28,6 +28,14 @@ public class Test {
 		log.getLog();
 		System.out.println("Over all time difference is "+timeDeference/1000);
 		
+		OpenWeatherMap weather = new OpenWeatherMap();
+		try {
+			weather.getWeather();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		/*
 		try {
 			log.sendLog();

@@ -49,7 +49,7 @@ public long findActivityTime(Calendar startDate, Calendar endDate, String itemNa
 	BasicDBObject match = new BasicDBObject("$match", and);
 	
 	// Aggregate
-	List<BasicDBObject> pipeline = Arrays.asList(match, sort );
+	List<BasicDBObject> pipeline = Arrays.asList(match, sort);
 	AggregateIterable<Document> output =  coll.aggregate(pipeline);
 	// Get a iterator over the data
 	MongoCursor<Document> cursor = output.iterator();

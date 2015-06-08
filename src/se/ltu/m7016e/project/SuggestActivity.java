@@ -25,7 +25,7 @@ public class SuggestActivity {
 		long timeMoving = 0;
 		
 		
-		Calendar calNowTime = Calendar.getInstance();
+		Calendar calNowTime   = Calendar.getInstance();
 		Calendar calStartTime = Calendar.getInstance();
 		//calNowTime.add(Calendar.MONTH, 1);
 		//calStartTime.add(Calendar.MONTH, 1);

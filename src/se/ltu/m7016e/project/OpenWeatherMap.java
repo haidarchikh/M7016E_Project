@@ -80,8 +80,8 @@ public class OpenWeatherMap {
 		//System.out.println(weatherObject);
 		//System.out.println(mainObjext);
 		System.out.println("OpenWeatherMap response : "+response.getStatusLine().getStatusCode());
-		System.out.println("The weather status is : "+weather);
-		System.out.println("The temperature is    : "+temperature);
+		System.out.println("Weather status  : "+weather);
+		System.out.println("Temperature     : "+temperature);
 		return weather;
 	}
 }

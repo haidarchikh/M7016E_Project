@@ -20,7 +20,7 @@ public class PushbulletClient {
 	
 	private HttpClient client;
 	private final static String noteUrl = "https://api.pushbullet.com/v2/pushes";
-	private final static String token 	= "Bearer COg9mSrDPFKBQIxzK7twCbEOHgovuh14";
+	private final static String TOKEN 	= "Bearer COg9mSrDPFKBQIxzK7twCbEOHgovuh14";
 	private StringEntity stringEntity;
 	
 	public PushbulletClient(){}
@@ -36,13 +36,12 @@ public class PushbulletClient {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		System.out.println(JSONEntity);
 		stringEntity = new StringEntity(JSONEntity.toString());
 		HttpUriRequest post = RequestBuilder
 				.post()
 				.setUri(noteUrl)
 				.setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-				.setHeader("Authorization", token)
+				.setHeader("Authorization", TOKEN)
 				.setEntity(stringEntity)
 				.build();
 		HttpResponse response = client.execute(post);
@@ -54,7 +53,7 @@ public class PushbulletClient {
 			while ((line = rd.readLine()) != null) {
 				result.append(line);
 		}
-		System.out.println(result.toString());
-		System.out.println("Pushbullet response code is "+response.getStatusLine().getStatusCode());
+		//System.out.println(result.toString());
+		System.out.println("Pushbullet response code : "+response.getStatusLine().getStatusCode());
 	}
 }

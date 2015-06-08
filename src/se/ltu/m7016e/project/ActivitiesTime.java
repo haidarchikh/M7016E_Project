@@ -106,7 +106,7 @@ public long findActivityTime(Calendar startDate, Calendar endDate, String itemNa
 		}
 	}
 			
-	System.out.print("The user spent "+duration+" seconds doing the activity monitored by <"+ itemName);
+	System.out.print("The user spent "+duration/60+" minutes doing the activity monitored by <"+ itemName);
 	System.out.println("> between "+startDate.getTime()+" and "+endDate.getTime());
 
 	return duration;

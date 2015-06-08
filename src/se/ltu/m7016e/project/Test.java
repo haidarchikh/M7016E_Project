@@ -45,13 +45,13 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		/*
+		
 		try {
 			log.sendLog();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+		
 		/*
 		 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {

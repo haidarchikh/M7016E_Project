@@ -12,6 +12,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class PushbulletClient {
@@ -19,7 +21,6 @@ public class PushbulletClient {
 	private HttpClient client;
 	private final static String noteUrl = "https://api.pushbullet.com/v2/pushes";
 	private final static String token 	= "Bearer COg9mSrDPFKBQIxzK7twCbEOHgovuh14";
-	private StringBuilder note;
 	private StringEntity stringEntity;
 	
 	public PushbulletClient(){}
@@ -27,14 +28,16 @@ public class PushbulletClient {
 	//gets note title and body and send a note to pushbullet user 
 	public void sendNote(String noteTitle , String noteCotent) throws ClientProtocolException, IOException{
 		client = HttpClients.custom().build();
-		note = new StringBuilder();
-		note.append("{\"type\": \"note\", \"title\":")
-			.append("\""+noteTitle+"\"")
-			.append(", \"body\":")
-			.append("\""+noteCotent+"\"")
-			.append("}");
-		System.out.println(note.toString());
-		stringEntity = new StringEntity(note.toString());
+		JSONObject JSONEntity = new JSONObject();
+		try {
+			JSONEntity.put("type" , "note")
+			          .put("title", noteTitle)
+			          .put("body" , noteCotent);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		System.out.println(JSONEntity);
+		stringEntity = new StringEntity(JSONEntity.toString());
 		HttpUriRequest post = RequestBuilder
 				.post()
 				.setUri(noteUrl)

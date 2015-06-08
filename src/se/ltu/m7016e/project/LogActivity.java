@@ -35,9 +35,9 @@ public class LogActivity {
 		   .append(startTime.getTime())
 		   .append(" till ")
 		   .append(endTime.getTime())
-		   .append("\\nSleep time is : "+sleep)
-		   .append("\\nAt home time is : "+atHome)
-		   .append("\\nMoving at home time is : "+moving);
+		   .append("\nSleep time is : "+sleep)
+		   .append("\nAt home time is : "+atHome)
+		   .append("\nMoving at home time is : "+moving);
 		
 		sendBullet.sendNote("OpenHAB",log.toString());
 	}

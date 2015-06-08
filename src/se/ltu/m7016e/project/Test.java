@@ -18,15 +18,15 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Calendar startTime = new GregorianCalendar(2015, 04, 29, 6, 45, 00);
-		Calendar endTime= new GregorianCalendar(2015, 04, 29, 7, 30, 00);
+		Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
+		Calendar endTime= new GregorianCalendar(2015, 04, 30, 7, 30, 00);
 		long timeDeference = endTime.getTimeInMillis() - startTime.getTimeInMillis();
-		
+		timeDeference /= (1000*60);
 		MongoDB database = new MongoDB("openhab", "test1");
 		database.connect();
 		LogActivity log = new LogActivity(startTime , endTime);
 		log.getLog();
-		System.out.println("Over all time difference is "+timeDeference/1000);
+		System.out.println("Over all time difference is "+timeDeference);
 		
 		SuggestActivity activity = new SuggestActivity();
 		try {
@@ -45,13 +45,13 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		
+		/*
 		try {
 			log.sendLog();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		/*
 		 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {

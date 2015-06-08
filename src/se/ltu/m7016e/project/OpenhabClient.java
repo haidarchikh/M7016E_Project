@@ -26,7 +26,7 @@ public class OpenhabClient {
 	}
 	
 	//take item name and value , push it to openhab 
-	public int pushItemValue(String itemName,String value) throws ClientProtocolException, IOException{
+	public int pushItemValue(String itemName, String value) throws ClientProtocolException, IOException{
 		StringBuilder url = new StringBuilder();
 		url.append("http://"+hostAddress+":")
 		   .append(port);

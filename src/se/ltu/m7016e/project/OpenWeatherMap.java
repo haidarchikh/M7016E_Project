@@ -73,7 +73,7 @@ public class OpenWeatherMap {
 			mainObjext    = listObject.getJSONObject("main");
 			weatherObject = weatherArray.getJSONObject(0);
 			weather       = (String) weatherObject.get("main");
-			temperature   = (double) mainObjext.get("temp");
+			temperature   = mainObjext.getDouble("temp");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

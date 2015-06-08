@@ -23,7 +23,7 @@ public class ActivitiesTime {
 	public final static String ITEM 			= "item";
 	public ActivitiesTime(){
 	//coll = database.getColl();
-		coll = MongoDB.coll;
+	coll = MongoDB.coll;
 	}
 	
 public long findActivityTime(Calendar startDate, Calendar endDate, String itemName){

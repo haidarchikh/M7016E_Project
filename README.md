@@ -14,7 +14,9 @@ The service is built with loosely coupled component in mind, making it easier to
 
 ##features
 
-#### pull a value 
+#### Pull/Push values to/from Openhab
+Using Openhab REST API we can push or pull a value to Openhab. The feature allow us to control the home environment, turn on/off objects , get the current object's value . Togother with the database data the service get a greate deal of flexibility. 
+###### pull a value 
 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
@@ -25,7 +27,7 @@ OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			}
 ```
 
-#### push a value 
+###### push a value 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {

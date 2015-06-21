@@ -12,11 +12,11 @@ This project is built as a separate service to get out of Openhab environment re
 
 The service is built with loosely coupled component in mind, making it easier to add new features .
 
-##features
+##Features
 
 #### Pull/Push values to/from Openhab
 Using Openhab REST API we can push or pull a value to Openhab. The feature allow us to control the home environment, turn on/off objects , get the current object's value . Togother with the database data the service get a greate deal of flexibility. 
-###### pull a value 
+* **pull a value** 
 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
@@ -27,7 +27,7 @@ OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			}
 ```
 
-###### push a value 
+* **push a value** 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {
@@ -37,6 +37,8 @@ OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			}
 ```
 #### Get weather status
+We use OpenWeatherMap API to get the weather status.  
+**Example:**
 ```java
 OpenWeatherMap weather = new OpenWeatherMap();
 		try {
@@ -45,7 +47,9 @@ OpenWeatherMap weather = new OpenWeatherMap();
 			e.printStackTrace();
 		}
 ```
-#### Send notifications 
+#### Send notifications
+Pushbullet is an app syncs phone and browser notification , Using its API we send notifications to the user.  
+**Example:**
 ```java
 PushbulletClient sendBullet = new PushbulletClient();
     try {
@@ -55,7 +59,7 @@ PushbulletClient sendBullet = new PushbulletClient();
 		}
 ```
 #### Calculate activities time
-To support the service aim ( i.e. analysis long term data ) the service has findActivityTime function which calculate how long a sensor value was ON “true” within a given date.  
+To support the service aim ( i.e. analysis long term data ) the service has findActivityTime function which calculate how long a sensor's value was ON “true” within a given date.  
 **Example:**
 ```java
 MongoDB db = new MongoDBMongoDB(String hostAddress,int hostPort , String database , String collection);

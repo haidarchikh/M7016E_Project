@@ -22,10 +22,17 @@ public class ActivitiesTime {
 	public final static String VALUE 			= "value";
 	public final static String ITEM 			= "item";
 	public ActivitiesTime(){
-	//coll = database.getColl();
 	coll = MongoDB.coll;
 	}
-	
+	/**
+	 * Return a time in seconds that represent the activity duration
+	 * @param startDate Calendar Object giving the start date to track
+	 * @param endDate   Calendar Object giving the end date to track
+	 * @param itemName  String Object giving which item to track
+	 * Item type has to be Boolean
+	 * calculate the true time of the item
+	 * */
+
 public long findActivityTime(Calendar startDate, Calendar endDate, String itemName){
 		
 	long duration = 0;

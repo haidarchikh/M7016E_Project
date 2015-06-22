@@ -71,7 +71,7 @@ long sleep = getTime.findActivityTime(startTime, endTime, MATTRESS_SENSOR);
 give the user a weekly log of his activities at home , currently  monitored activities are (sleep , presence at home , moving at home ,watching  TV , cooking).  
 **Example:**
 ```java
-MongoDB db = new MongoDBMongoDB(String hostAddress,int hostPort , String database , String collection);
+MongoDB db = new MongoDB(String hostAddress,int hostPort , String database , String collection);
 database.connect();
 LogActivity log = new LogActivity(startTime , endTime);
 log.getLog();
@@ -92,3 +92,5 @@ SuggestActivity activity = new SuggestActivity();
 			e.printStackTrace();
 		}
 ```
+
+![My image](https://github.com/haidarchikh/M7016E_Project/tree/master/src/pic/[M7016E]_Architecture (2).jpg)

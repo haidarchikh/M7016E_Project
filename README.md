@@ -93,4 +93,4 @@ SuggestActivity activity = new SuggestActivity();
 		}
 ```
 
-![My image](https://github.com/haidarchikh/M7016E_Project/tree/master/src/pic/[M7016E]_Architecture (2).jpg)
+![](https://github.com/haidarchikh/M7016E_Project/tree/master/src/pic/[M7016E]_Architecture (2).jpg)

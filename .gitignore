@@ -10,7 +10,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-
+*.md~
 # Eclipse Core
 .project
 

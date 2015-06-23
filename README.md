@@ -1,7 +1,7 @@
 # M7016E_Project
 The service is built as a part of [M7016E] course . The project architecture .  
 
-![](https://github.com/haidarchikh/M7016E_Project/tree/master/resources/[M7016E]_Architecture.png)
+![](https://github.com/haidarchikh/M7016E_Project/tree/master/resources/Architecture.png)
 
 Openhab is used as a middleware. 
   * Z-wave binding to collect data 

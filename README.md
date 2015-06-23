@@ -1,5 +1,7 @@
 # M7016E_Project
-The service is built as a part of [M7016E] course . The project architecture .
+The service is built as a part of [M7016E] course . The project architecture .  
+
+![](https://github.com/haidarchikh/M7016E_Project/tree/master/resources/[M7016E]_Architecture.png)
 
 Openhab is used as a middleware. 
   * Z-wave binding to collect data 
@@ -62,7 +64,7 @@ PushbulletClient sendBullet = new PushbulletClient();
 To support the service aim ( i.e. analysis long term data ) the service has findActivityTime function which calculate how long a sensor's value was ON “true” within a given date.  
 **Example:**
 ```java
-MongoDB db = new MongoDBMongoDB(String hostAddress,int hostPort , String database , String collection);
+MongoDB db = new MongoDB(String hostAddress,int hostPort , String database , String collection);
 database.connect();
 ActivitiesTime getTime = new ActivitiesTime();
 long sleep = getTime.findActivityTime(startTime, endTime, MATTRESS_SENSOR);
@@ -93,4 +95,3 @@ SuggestActivity activity = new SuggestActivity();
 		}
 ```
 
-![](https://github.com/haidarchikh/M7016E_Project/tree/master/src/pic/[M7016E]_Architecture (2).jpg)

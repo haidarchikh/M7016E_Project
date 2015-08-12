@@ -84,6 +84,8 @@ try {
 if the weather is good and the user is at home it will suggest to him to go out.  
 **Example:**
 ```java
+MongoDB db = new MongoDB(String hostAddress,int hostPort , String database , String collection);
+database.connect();
 SuggestActivity activity = new SuggestActivity();
 		try {
 			activity.suggestWeather();

@@ -8,7 +8,7 @@ This service is built to get out of Openhab environment restrictions, as a highe
 
 The service is built with loosely coupled component in mind, making it easier to add new features. There are three core components give the service flexibility to easily expand.  
 * OpenHABClient    : pull and push values to/from OpenHAB instance.
-* MongoDB	   : get data from a MongoDB database.
+* MongoDB	   : get data from MongoDB database.
 * PushbulletClient : send notifications to the user. 
 
 ##Features

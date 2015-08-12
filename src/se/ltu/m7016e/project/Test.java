@@ -50,13 +50,13 @@ public class Test {
 		long timeDeference = endTime.getTimeInMillis() - startTime.getTimeInMillis();
 		timeDeference /= (1000*60);
 		System.out.println("Over all time difference is "+timeDeference);
-		/*
+		
 		try {
 			log.sendLog();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+		
 		/*
 		 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
 			try {

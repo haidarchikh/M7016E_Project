@@ -6,10 +6,10 @@ The service is built as a part of [M7016E] course . The project architecture .
 
 This service is built to get out of Openhab environment restrictions, as a higher layer where we the service is able to interact with multiple Openhab instances . The service's goal is to analyze the data generated over a period of time and actuate according to it. This make it possible to observe behaviors.
 
-The service is built with loosely coupled component in mind, making it easier to add new features .There are three core components give the service flexibility to easily expand.
-*OpenHABClient    : pull and push values to/from OpenHAB instance.
-*MongoDB          : get data from a MongoDB database.
-*PushbulletClient : send notifications to the user. 
+The service is built with loosely coupled component in mind, making it easier to add new features. There are three core components give the service flexibility to easily expand.  
+* OpenHABClient    : pull and push values to/from OpenHAB instance.
+* MongoDB	   : get data from a MongoDB database.
+* PushbulletClient : send notifications to the user. 
 
 ##Features
 

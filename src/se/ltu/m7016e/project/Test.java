@@ -17,7 +17,14 @@ public class Test {
 	private static final int 	OPENHAB_PORT = 8080;
 	
 	public static void main(String[] args) {
-		
+		PushbulletClient note = new PushbulletClient();
+		try {
+			note.sendNote("Test", "console");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*
 		Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
 		Calendar endTime= new GregorianCalendar(2015, 04, 30, 7, 30, 00);
 		
@@ -75,7 +82,10 @@ public class Test {
 		//database.findItems("item","power_Sensor");
 		//database.findItems("item","door_Sensor");
 		
+		
+		/* activate always 
 		database.getCount();
 		database.disconnect();
+		*/
 	}
 }

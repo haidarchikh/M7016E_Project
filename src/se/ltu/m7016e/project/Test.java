@@ -19,7 +19,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Runnable sendTestBullet = new Runnable(){
+		Runnable sendTestBullet	= new Runnable(){
 			@Override
 			public void run() {
 				PushbulletClient note = new PushbulletClient();
@@ -48,26 +48,7 @@ public class Test {
 				database.disconnect();
 			}
 		};
-		Runnable logActivityTest = new Runnable(){
-			@Override
-			public void run() {
-				Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
-				Calendar endTime   = new GregorianCalendar(2015, 04, 30, 7, 30, 00);
-				
-				MongoDB database = new MongoDB("openhab", "test1");
-				database.connect();
-				LogActivity log = new LogActivity(startTime , endTime);
-				log.getLog();
-				try {
-					log.sendLog();
-				} catch (IOException e) {
-					e.printStackTrace();
-			}
-				database.getCount();
-				database.disconnect();
-		}
-	};
-		
+
 		Runnable logActivity = new Runnable(){
 			@Override
 			public void run() {
@@ -75,6 +56,9 @@ public class Test {
 				Calendar endTime   = Calendar.getInstance();
 				startTime.add(Calendar.WEEK_OF_MONTH, -1);
 				
+			//	Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
+			//	Calendar endTime   = new GregorianCalendar(2015, 04, 30, 7, 30, 00);
+
 				MongoDB database = new MongoDB("openhab", "test1");
 				database.connect();
 				LogActivity log = new LogActivity(startTime , endTime);
@@ -101,12 +85,12 @@ public class Test {
 		}
 		
 	};
-	   // Thread mThread = new Thread(sendTestBullet);
-	   // mThread.run();
+	    Thread mThread = new Thread(sendTestBullet);
+	    mThread.run();
 	    
 		Scheduler sendTestBulletScheduler = new Scheduler();    
 		sendTestBulletScheduler.schedule("* * * * *", suggestActivity);
-		sendTestBulletScheduler.start();
+	//	sendTestBulletScheduler.start();
 	    
 		
 	    /*
@@ -116,20 +100,7 @@ public class Test {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		long timeDeference = endTime.getTimeInMillis() - startTime.getTimeInMillis();
-		timeDeference /= (1000*60);
-		System.out.println("Over all time difference is "+timeDeference);
-		
 
-		//ActivitiesTime getTime = new ActivitiesTime(database);
-		//long time = getTime.findActivityTime(calStart, calEnd,"mattress_Sensor");
-		//String s = Objects.toString(time, null);
-
-		//database.findItems("item","motion_Sensor");
-		//database.findItems("item","mattress_Sensor");
-		//database.findItems("item","power_Sensor");
-		//database.findItems("item","door_Sensor");
-		
 		*/
 	}
 }

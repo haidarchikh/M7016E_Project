@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import it.sauronsoftware.cron4j.Scheduler;
 
 public class Test {
 	
@@ -17,75 +18,118 @@ public class Test {
 	private static final int 	OPENHAB_PORT = 8080;
 	
 	public static void main(String[] args) {
-		PushbulletClient note = new PushbulletClient();
-		try {
-			note.sendNote("Test", "console");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		Runnable sendTestBullet = new Runnable(){
+			@Override
+			public void run() {
+				PushbulletClient note = new PushbulletClient();
+				try {
+					note.sendNote("Test", "console");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+			}
+			
+		};
+		Runnable suggestActivity = new Runnable(){
+			@Override
+			public void run() {
+				MongoDB database = new MongoDB("openhab", "test1");
+				database.connect();
+				SuggestActivity activity = new SuggestActivity();
+				try {
+					activity.suggestWeather();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				database.getCount();
+				database.disconnect();
+			}
+		};
+		Runnable logActivityTest = new Runnable(){
+			@Override
+			public void run() {
+				Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
+				Calendar endTime   = new GregorianCalendar(2015, 04, 30, 7, 30, 00);
+				
+				MongoDB database = new MongoDB("openhab", "test1");
+				database.connect();
+				LogActivity log = new LogActivity(startTime , endTime);
+				log.getLog();
+				try {
+					log.sendLog();
+				} catch (IOException e) {
+					e.printStackTrace();
+			}
+				database.getCount();
+				database.disconnect();
 		}
-		/*
-		Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
-		Calendar endTime= new GregorianCalendar(2015, 04, 30, 7, 30, 00);
+	};
 		
-		MongoDB database = new MongoDB("openhab", "test1");
-		database.connect();
-		LogActivity log = new LogActivity(startTime , endTime);
-		log.getLog();
-		try {
-			log.sendLog();
-		} catch (IOException e) {
-			e.printStackTrace();
+		Runnable logActivity = new Runnable(){
+			@Override
+			public void run() {
+				Calendar startTime = Calendar.getInstance();
+				Calendar endTime   = Calendar.getInstance();
+				startTime.add(Calendar.WEEK_OF_MONTH, -1);
+				
+				MongoDB database = new MongoDB("openhab", "test1");
+				database.connect();
+				LogActivity log = new LogActivity(startTime , endTime);
+				log.getLog();
+				try {
+					log.sendLog();
+				} catch (IOException e) {
+					e.printStackTrace();
+			    }
+				database.getCount();
+				database.disconnect();
+		}
+	};
+		Runnable openHabClient = new Runnable(){
+		@Override
+		public void run() {
+			 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
+				try {
+					openHab.pushItemValue(METER_SWITCH , OFF);
+					openHab.pullItemValue(METER_SWITCH);
+				} catch (IOException e) {
+					e.printStackTrace();
+			}	
 		}
 		
-		SuggestActivity activity = new SuggestActivity();
-		try {
-			activity.suggestWeather();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	};
+	   // Thread mThread = new Thread(sendTestBullet);
+	   // mThread.run();
+	    
+		Scheduler sendTestBulletScheduler = new Scheduler();    
+		sendTestBulletScheduler.schedule("* * * * *", suggestActivity);
+		sendTestBulletScheduler.start();
+	    
 		
-		
+	    /*
 		OpenWeatherMap weather = new OpenWeatherMap();
 		try {
 			weather.getWeather();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		long timeDeference = endTime.getTimeInMillis() - startTime.getTimeInMillis();
 		timeDeference /= (1000*60);
 		System.out.println("Over all time difference is "+timeDeference);
 		
-		try {
-			log.sendLog();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		/*
-		 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
-			try {
-				openHab.pushItemValue(METER_SWITCH , OFF);
-				openHab.pullItemValue(METER_SWITCH);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		*/
+
 		//ActivitiesTime getTime = new ActivitiesTime(database);
 		//long time = getTime.findActivityTime(calStart, calEnd,"mattress_Sensor");
 		//String s = Objects.toString(time, null);
-		
+
 		//database.findItems("item","motion_Sensor");
 		//database.findItems("item","mattress_Sensor");
 		//database.findItems("item","power_Sensor");
 		//database.findItems("item","door_Sensor");
 		
-		
-		/* activate always 
-		database.getCount();
-		database.disconnect();
 		*/
 	}
 }

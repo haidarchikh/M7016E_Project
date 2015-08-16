@@ -1,0 +1,20 @@
+repositories {
+	mavenCentral()
+}
+
+apply plugin: "java"
+
+dependencies {
+	compile "org.mongodb:mongo-java-driver:3.0.3"
+	compile "org.apache.httpcomponents:httpclient:4.5"
+	compile 'org.json:json:20140107'	
+}
+
+sourceSets{
+	main.java.srcDir "scr/se"
+}
+
+jar{
+	from configurations.compile.collect {zipTree it}
+	manifest.attributes "Main-Class": "se.ltu.m7016e.project.Test"
+}

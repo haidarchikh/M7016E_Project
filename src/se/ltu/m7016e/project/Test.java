@@ -16,7 +16,6 @@ public class Test {
 	private static final String OFF 		 = "OFF";
 	private static final String OPENHAB_IP   = "192.168.1.9";
 	private static final int 	OPENHAB_PORT = 8080;
-	
 	public static void main(String[] args) {
 		
 		Runnable sendTestBullet	= new Runnable(){
@@ -44,7 +43,6 @@ public class Test {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				database.getCount();
 				database.disconnect();
 			}
 		};
@@ -52,12 +50,12 @@ public class Test {
 		Runnable logActivity = new Runnable(){
 			@Override
 			public void run() {
-				Calendar startTime = Calendar.getInstance();
-				Calendar endTime   = Calendar.getInstance();
-				startTime.add(Calendar.WEEK_OF_MONTH, -1);
+			//	Calendar startTime = Calendar.getInstance();
+			//	Calendar endTime   = Calendar.getInstance();
+			//	startTime.add(Calendar.WEEK_OF_MONTH, -1);
 				
-			//	Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
-			//	Calendar endTime   = new GregorianCalendar(2015, 04, 30, 7, 30, 00);
+				Calendar startTime = new GregorianCalendar(2015, 04, 26, 6, 45, 00);
+				Calendar endTime   = new GregorianCalendar(2015, 04, 30, 7, 30, 00);
 
 				MongoDB database = new MongoDB("openhab", "test1");
 				database.connect();
@@ -85,22 +83,35 @@ public class Test {
 		}
 		
 	};
-	    Thread mThread = new Thread(sendTestBullet);
-	    mThread.run();
+	     Thread mThread = new Thread(sendTestBullet);
+	    //mThread.start();
+	    
+	    Thread mThread1 = new Thread(logActivity);
+	    mThread1.start();
+	    
+	    
+	    try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    
+	    Thread mThread2 = new Thread(suggestActivity);
+	    mThread2.start();
 	    
 		Scheduler sendTestBulletScheduler = new Scheduler();    
 		sendTestBulletScheduler.schedule("* * * * *", suggestActivity);
 	//	sendTestBulletScheduler.start();
-	    
 		
-	    /*
-		OpenWeatherMap weather = new OpenWeatherMap();
-		try {
-			weather.getWeather();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		*/
+		Scheduler suggestActicityScheduler = new Scheduler();
+		suggestActicityScheduler.schedule("* * * * *", suggestActivity);
+	//	suggestActicityScheduler.start();
+	    
+		Scheduler logActivityScheduler = new Scheduler();
+		logActivityScheduler.schedule("* * * * *", logActivity);
+	//	logActivityScheduler.start();
+		
 	}
 }

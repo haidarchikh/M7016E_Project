@@ -1,4 +1,5 @@
 # M7016E_Project
+
 The service is built as a part of [M7016E] course . The project architecture .  
 
 ![](https://raw.github.com/haidarchikh/M7016E_Project/master/resources/Architecture.png)
@@ -94,3 +95,17 @@ SuggestActivity activity = new SuggestActivity();
 		}
 ```
 
+##How to install  
+1- Using terminal, clone the project into an arbitrary directory or just download the project as a zip file.
+``` Shell
+git clone https://github.com/haidarchikh/M7016E_Project
+```
+2- Step into M7016E_Project folder
+
+3- Build the project
+``` shell
+gradle build
+```
+You will get
+* Executable jar in <arbitrary_directory>/M7016E_Project/build/libs
+* Eclipse project that you can import (import existing project into workspace)

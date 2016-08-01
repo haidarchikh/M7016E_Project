@@ -20,43 +20,28 @@ Using Openhab REST API we can push or pull a value to Openhab. The feature allow
 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
-			try {
-				openHab.pullItemValue(METER_SWITCH);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+openHab.pullItemValue(METER_SWITCH);
+
 ```
 
 * **push a value** 
 ```java
 OpenhabClient openHab = new OpenhabClient(OPENHAB_IP, OPENHAB_PORT);
-			try {
-				openHab.pushItemValue(METER_SWITCH , OFF);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+openHab.pushItemValue(METER_SWITCH , OFF);
 ```
 #### Get weather status
 The service uses OpenWeatherMap API to get the weather status.  
 **Example:**
 ```java
 OpenWeatherMap weather = new OpenWeatherMap();
-		try {
-			weather.getWeather();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+weather.getWeather();
 ```
 #### Send notifications
 Pushbullet is an app syncs phone and browser notification , Using its API we send notifications to the user.  
 **Example:**
 ```java
 PushbulletClient sendBullet = new PushbulletClient();
-    try {
-			sendBullet.sendNote(String noteTitle , String noteCotent);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+sendBullet.sendNote(String noteTitle , String noteCotent);
 ```
 #### Calculate activities time
 To support the service aim ( i.e. analysis data over a period of time ) the service has findActivityTime function, which calculate how long a sensor's value was ON “true” within a given date.  
@@ -75,11 +60,7 @@ MongoDB db = new MongoDB(String hostAddress,int hostPort , String database , Str
 database.connect();
 LogActivity log = new LogActivity(startTime , endTime);
 log.getLog();
-try {
-			log.sendLog();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+log.sendLog();
 ```
 #### Suggest an activity   
 if the weather is good and the user is at home it will suggest to him to go out.  
@@ -88,11 +69,7 @@ if the weather is good and the user is at home it will suggest to him to go out.
 MongoDB db = new MongoDB(String hostAddress,int hostPort , String database , String collection);
 database.connect();
 SuggestActivity activity = new SuggestActivity();
-		try {
-			activity.suggestWeather();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+activity.suggestWeather();
 ```
 
 ##How to install  

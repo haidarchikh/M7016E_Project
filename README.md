@@ -1,4 +1,4 @@
-# M7016E_Project
+# Smarthome
 
 The service is built as a part of [M7016E] course . The project architecture .  
 
